@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Include most of the main code. Ordering is important here. -->
+
+    <script src="script/model/patient_set.js"></script>
+    <script src="script/model/patient.js"></script>
+    <script src="script/model/gene_set.js"></script>
+    <script src="script/model/gene.js"></script>
+    <script src="script/model/disease.js"></script>
+    <script src="script/model/prediction.js"></script>
+    <script src="script/lib/math.js"></script>
+    <script src="script/lib/visualization.js"></script>
+    <script src="script/learning/importer.js"></script>
+    <script src="script/prediction/predictor.js"></script>
+
+    <!-- Include CSS styling -->
+    <link rel='stylesheet' type='text/css' href='style/index.css'></link>
+    
+    <!-- Now we include the extra library features -->
+    <script src="script/lib/jquery.js"></script>
+    <script type="text/javascript">
+        $.browser = new Object();
+        $.browser.msie = false; // small hack to get Couch DB library working
+    </script>
+    <script src="script/controller.js"></script>
+    
+    <title>Cancer Type Predictor</title>
+</head>
+<body>
+
+<form id="ui">
+    <fieldset>
+        <legend>Training</legend>
+        <ol>
+            <li>
+                <progress id='trainingProgressBar' max="100" value="0">
+                </progress>
+            </li>
+            <div id="trainingFileDrop" class="file_drop">Drop training file here</div>
+        </ol>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Testing</legend>
+        <ol>
+            <li>
+                <progress id='testingProgressBar' max="100" value="0">
+                </progress>
+            </li>
+            <li>
+                <label for="makePredictions">Make Predictions</label>
+                <!-- TODO: should be a div or something nicer to style-->
+                <button id="makePredictions" type="button">Predict!</button>
+            </li>
+            <li>
+                <label for="accuracyTesting">Accuracy</label>
+                <!-- TODO: should be a div or something nicer to style-->
+                <input type="text" id="accuracyTesting"></input>
+            </li>
+            <li>
+                <label for="predictiveGeneArea">Predictive Genes</label>
+                <!-- TODO: should be a div or something nicer to style-->
+                <textarea id="predictiveGeneArea" cols="40" rows="10"></textarea>
+            </li>
+            <li>
+                <label for="classificationArea">Classifications</label>
+                <!-- TODO: should be a div or something nicer to style-->
+                <textarea id="classificationArea" cols="70" rows="10"></textarea>
+            </li>
+            <div id="testingFileDrop" class="file_drop">Drop testing file here</div>
+        </ol>
+    </fieldset>
+    
+    <fieldset>
+        <legend>Visualization</legend>
+        <canvas id="visualCanvas" width="500" height="200"></canvas>
+    </fieldset>
+</form>
+</body>
+
+</html>
